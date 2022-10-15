@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Array of capitalized names
+# Array of capitalized names.
 names=()
 
 # Array of logins. Firstname's first letter + lastname. All lowercase.
@@ -42,13 +42,9 @@ create_logins() {
 # Reading data from source file and fill corresponding arrays
 while IFS="," read id location_id name title email department; do
   create_names $name
-
   create_logins $name
-
   ids[${#ids[@]}]=$id
-
   loc_ids[${#loc_ids[@]}]="${location_id}"
-
   departments[${#departments[@]}]=$department
 done < <(tail +2 $1)
 
@@ -65,9 +61,9 @@ done < <(printf "%s\n" "${logins[@]}" | sort | uniq -d)
 # Creating "accounts_new.csv" file with corresponging headers.
 echo "id,location_id,name,title,email,department" >${directory}/accounts_new.csv
 
-# Filling "accounts_new.csv" file with data
+# Filling "accounts_new.csv" file with data.
 for i in ${!ids[@]}; do
-  # Adding location id to the non-unique email logins
+  # Adding location id to the non-unique email logins.
   if [[ "${duplicated_logins[*]}" =~ "${logins[$i]}" ]]; then
     echo "${ids[$i]},${loc_ids[$i]},${names[$i]},${titles[$i]},${logins[$i]}${loc_ids[$i]}$domain,${departments[$i]}" >>${directory}/accounts_new.csv
     continue
