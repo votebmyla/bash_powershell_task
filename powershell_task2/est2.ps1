@@ -1,9 +1,4 @@
-param (
-  [Parameter(Mandatory = $true)]
-  $FilePath
-)
-
-$path = Split-Path $FilePath
+$path = "C:\Users\r.alymbetov\Desktop\bash_powershell_task\powershell_task2"
 
 $inputFilePath = "$path\accounts.csv"
 $outputFilePath = "$path\accounts_new.csv"
@@ -31,7 +26,9 @@ $accounts | ForEach-Object {
   $login = $firstname.Substring(0, 1) + $lastname
 
   $_.name = (Get-Culture).TextInfo.ToTitleCase($fullname)
-
+  
+  # $_.id 
+  # $login
   if ($duplicated_logins -contains $login) {
     $_.email = $login + $_.location_id + $domain
   }
