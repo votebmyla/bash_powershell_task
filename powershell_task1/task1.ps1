@@ -12,13 +12,10 @@ param (
 
 # IP1 in 32-bits form.
 $ip1_bits = ""
-
 # IP2 in 32-bits form.
 $ip2_bits = ""
-
 # Mask in 32-bits form.
 $mask_bits = ""
-
 # Converting decimal IP and Mask into bits. 
 function ConvertToBits {
   param (
